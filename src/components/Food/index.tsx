@@ -8,13 +8,14 @@ interface IFood {
     id: number;
     name: string;
     description: string;
+    available: boolean;
     price: string;
     image: string;
 }
 
 interface IProps {
   food: IFood;
-  available: boolean;
+  available?: boolean;
   handleEditFood: (food: IFood) => void;
   handleDelete: (id: number) => Promise<void>;
 }
