@@ -1,16 +1,16 @@
-import {
+import React, {
   useEffect,
   useRef,
   useState,
   useCallback,
-  ReactNode,
+  InputHTMLAttributes,
 } from 'react';
 
 import { useField } from '@unform/core';
 
 import { Container } from './styles';
 
-interface IProps {
+interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
 }
 
