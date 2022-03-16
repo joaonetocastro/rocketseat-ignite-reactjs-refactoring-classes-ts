@@ -6,21 +6,14 @@ import Food from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 import { FoodsContainer } from './styles';
+import { FoodDTO } from '../../dtos/food/FoodDTO';
+import { UpdateFoodDTO } from '../../dtos/food/UpdateFoodDTO';
+import { AddFoodDTO } from '../../dtos/food/AddFoodDTO';
 
-interface IFood {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  available: boolean;
-  image: string;
-}
-
-type AddFoodType = Omit<IFood, 'id'>
 
 export default function Dashboard() {
-  const [foods, setFoods] = useState<IFood[]>([]);
-  const [editingFood, setEditingFood] = useState<IFood>({} as IFood);
+  const [foods, setFoods] = useState<FoodDTO[]>([]);
+  const [editingFood, setEditingFood] = useState<UpdateFoodDTO>({} as UpdateFoodDTO);
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
@@ -34,7 +27,7 @@ export default function Dashboard() {
     fetchFoods();
   }, [])
 
-  const handleAddFood = async (food: AddFoodType) => {
+  const handleAddFood = async (food: AddFoodDTO) => {
     try {
       const response = await api.post('/foods', {
         ...food,
@@ -47,7 +40,7 @@ export default function Dashboard() {
     }
   }
 
-  const handleUpdateFood = async (food: IFood) => {
+  const handleUpdateFood = async (food: FoodDTO) => {
     try {
       const foodUpdated = await api.put(
         `/foods/${editingFood.id}`,
@@ -79,7 +72,7 @@ export default function Dashboard() {
     setEditModalOpen(!editModalOpen);
   }
 
-  const handleEditFood = (food: IFood) => {
+  const handleEditFood = (food: FoodDTO) => {
     setEditingFood(food)
     setEditModalOpen(true);
   }

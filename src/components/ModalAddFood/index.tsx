@@ -3,23 +3,16 @@ import { FiCheckSquare } from 'react-icons/fi';
 import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
-
-interface IAddFood {
-  name: string;
-  description: string;
-  price: string;
-  available: boolean;
-  image: string;
-}
+import { AddFoodDTO } from '../../dtos/food/AddFoodDTO';
 
 interface IProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleAddFood: (food: IAddFood) => void;
+  handleAddFood: (food: AddFoodDTO) => void;
 }
 
 export default function ModalAddFood({isOpen, setIsOpen, handleAddFood}: IProps) {
-  const handleSubmit = async (data: IAddFood) => {
+  const handleSubmit = async (data: AddFoodDTO) => {
     handleAddFood(data);
     setIsOpen();
   };

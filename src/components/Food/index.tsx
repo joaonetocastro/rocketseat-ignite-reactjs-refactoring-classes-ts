@@ -3,20 +3,12 @@ import { FiEdit3, FiTrash } from 'react-icons/fi';
 
 import { Container } from './styles';
 import api from '../../services/api';
-
-interface IFood {
-    id: number;
-    name: string;
-    description: string;
-    available: boolean;
-    price: string;
-    image: string;
-}
+import { FoodDTO } from '../../dtos/food/FoodDTO';
 
 interface IProps {
-  food: IFood;
+  food: FoodDTO;
   available?: boolean;
-  handleEditFood: (food: IFood) => void;
+  handleEditFood: (food: FoodDTO) => void;
   handleDelete: (id: number) => Promise<void>;
 }
 
